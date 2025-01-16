@@ -1,0 +1,115 @@
+const mongoose = require('mongoose')
+const userSchema = new mongoose.Schema({
+userName:{
+type:String,
+required:true,
+unique:true
+},
+firstName:{
+type:String,
+required:true
+},
+lastName:{
+type:String,
+required:true
+},
+middleName:{
+type:String
+},
+email:{
+type:String,
+required:true,
+unique:true,
+match: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
+},
+password:{
+type:String,
+min:8,
+},
+lastVisited:{
+type:Date,
+default:Date()
+},
+image:{
+    type:String,
+    default:'image'
+},
+isAdmin:{
+type:Boolean,
+default:false
+},
+manualPayments:[],
+isCashier:{
+  type:Boolean,default:false
+},
+reports:[],
+grooves:{
+type:Array,
+default:[]
+},
+phone:String,
+resetLink:{
+data:String,
+default:''
+},
+gender:{
+type:String
+},
+currentCity:{
+type:String
+},
+password:{
+type:String,
+required:true,
+min:8,
+max:100
+},
+usedPasswords:[],
+country:{},
+bank:{},
+date:{
+type:Date,
+default:Date()
+},
+canWithdrawSalary:{
+type:Boolean,
+default:false
+},
+beneficiary:{},
+isStaff:{
+type:Boolean,
+default:false
+},
+grooveOwner:{
+type:Boolean,
+default:false
+},
+sentMessages:[],
+receivedMessages:[],
+status:{
+type:String,
+default:'active'
+},
+balance: Number,
+  nextWithdrawal:Date,
+  withdrawalSchedule:Date,
+  worth:Number,
+  balance:Number,
+  graced:{
+    type:Boolean,
+    default:false
+  },
+health:{
+type:Number,
+default:100
+},
+referrer:{},
+investor:{
+    type:Boolean,
+    default:false
+},
+savings:[],
+orbits:[],
+paid:Number,received:Number
+},{timestamps:true})
+module.exports = mongoose.model('User',userSchema)

@@ -1,0 +1,61 @@
+const mongoose = require('mongoose')
+const appSettingsSchema = new mongoose.Schema({
+    name:String,
+    userRegistration:{
+        type:Boolean,
+        default:true
+    },
+    grooveRegistration:{
+        type:Boolean,
+        default:true
+    },
+    referralBonus:Number,
+    referralExpiration:Number,
+    premiumCost:Number,
+    personalMin:Number,
+    personalRate:Number,
+    grooveMin:Number,
+    grooveRate:Number,
+    grooveTime:Number,
+    increment:Number,
+    salaryPaymentRequests:[],
+  grooveFirstPaySpeed:Number,
+  groovePayAllSpeed:Number,
+  withdrawableReBonus:Number,
+  baseSalary:Number,
+  salaryTarget:Number,
+  staffs:[],
+    appMaxLevel:Number,
+    minTime:Number,
+    grooveTime:Number,
+    supports:[],
+    helped:[],
+    newsletters:[],
+    savingsTime:Number,
+    help:String,
+    newsletterSubscribers:[],
+    owner:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'User'
+    },
+    email:{
+        type:String,
+        required:true,
+        unique:true,
+        match: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
+        },
+        phone:{
+            type:Number
+        },
+    bankName:String,
+    accountName:String,
+    accountNumber:Number,
+    deletedUsers:[],
+    deletedAdmins:[],
+    deletedgrooves:[],
+    subsrciptions:[],
+    currency:{type:String},
+    reports:[],
+    applicants:[]
+})
+module.exports = mongoose.model('AppSetting',appSettingsSchema)

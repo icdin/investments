@@ -1,0 +1,93 @@
+const mongoose = require('mongoose')
+const adminSchema = new mongoose.Schema({
+    userName:{
+type:String,
+required:true,
+unique:true
+    },
+    firstName:{
+        type:String,
+        required:true
+    },
+    lastName:{
+        type:String,
+        required:true
+    },
+    middleName:{
+        type:String
+    },
+    email:{
+        type:String,
+        required:true,
+        unique:true,
+        match: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
+    },
+    password:{
+        type:String,
+        min:8,
+    },
+    thumbnail:{
+        type :String
+    },
+    isAdmin:{
+        type:Boolean,
+        default:true
+    },
+sent:{
+    type:Array,
+    default:[]
+},
+received:{
+    type:Array,
+    default:[]
+},
+shops:{
+    type:Array,
+    default:[]
+},
+    phone1:{
+        type:String
+    },
+    phone2:{
+        type:String
+    },
+    gender:{
+        type:String
+    },
+    currentCity:{
+        type:String
+    },
+    website:{
+        type:String
+    },
+    facebook:{
+        type:String
+    },
+    instagram:{
+        type:String
+    },twitter:{
+        type:String
+    },
+    cart:[
+        {type:mongoose.Schema.Types.ObjectId,
+            ref:'Shop'
+            }
+    ],
+    orders:[],
+    password:{
+        type:String,
+        required:true,
+        min:8,
+        max:100
+    },
+    country:{},
+    date:{
+        type:Date,
+        default:Date.now
+    },
+    shopOwner:{
+        type:Boolean,
+        default:false
+    }
+},{timestamps:true})
+module.exports = mongoose.model('Admin',adminSchema)
